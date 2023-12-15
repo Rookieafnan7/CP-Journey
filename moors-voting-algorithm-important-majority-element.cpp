@@ -39,10 +39,10 @@ public:
                 majorityElement = nums[itr];
 
             majorityElement == nums[itr] ? count++ : count--;
-            if (majorityElement == nums[itr])
-                count++;
-            else
-                count -= 1;
+            // if (majorityElement == nums[itr])
+            //     count++;
+            // else
+            //     count -= 1;
         }
         return majorityElement;
     }
