@@ -34,6 +34,7 @@ class Solution
 public:
     int searchInsert(vector<int> &nums, int target)
     {
+        int test;
         int left = 0, right = nums.size() - 1;
         int ref = -1;
         if (target > nums[right])
