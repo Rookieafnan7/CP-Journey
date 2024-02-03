@@ -1,0 +1,85 @@
+// Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+
+// Example 1:
+
+// Input: arr = [1,2,2,1,1,3]
+// Output: true
+// Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+// Example 2:
+
+// Input: arr = [1,2]
+// Output: false
+// Example 3:
+
+// Input: arr = [-3,0,1,-3,1,1,1,-3,10,0]
+// Output: true
+
+// Constraints:
+
+// 1 <= arr.length <= 1000
+// -1000 <= arr[i] <= 1000
+
+class BestSolution
+{
+public:
+    bool uniqueOccurrences(std::vector<int> &arr)
+    {
+        std::vector<int> ans;
+        int size = arr.size();
+
+        std::sort(arr.begin(), arr.end());
+        int i = 0;
+
+        while (i < size)
+        {
+            int count = 1;
+            for (int j = i + 1; j < size; j++)
+            {
+                if (arr[i] == arr[j])
+                {
+                    count++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            ans.push_back(count);
+            i = i + count;
+        }
+
+        size = ans.size();
+        std::sort(ans.begin(), ans.end());
+
+        for (int i = 0; i < size - 1; i++)
+        {
+            if (ans[i] == ans[i + 1])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
+
+class MySolution
+{
+public:
+    bool uniqueOccurrences(vector<int> &arr)
+    {
+        unordered_map<int, int> count;
+        unordered_map<int, int> track;
+        for (auto &i : arr)
+        {
+            count[i]++;
+        }
+        for (auto &p : count)
+        {
+            if (track.count(p.second) > 0)
+                return false;
+            track[p.second] = 1;
+        }
+        return true;
+    }
+};
